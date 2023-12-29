@@ -909,7 +909,12 @@ PlayerSettings:
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
   cloudServicesEnabled:
+    Build: 0
+    Game Performance: 0
+    Purchasing: 0
+    UDP: 0
     UNet: 1
+    Unity Ads: 0
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -924,11 +929,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: d92f935f-66b5-4175-a4c1-28e41dd37576
+  cloudProjectId: 643e0f71-5976-4ac2-afba-269c03b61c5c
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: 3D_Multiplayer_Racing_Game
-  organizationId: user8359
+  organizationId: yabokugaming
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 
