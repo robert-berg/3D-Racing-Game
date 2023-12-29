@@ -36,7 +36,7 @@ public class PUN2_GameLobby : MonoBehaviourPunCallbacks
     //Use this name when creating a Room
     string roomName = "Room 1";
     Vector2 roomListScroll = Vector2.zero;
-    bool joiningRoom = false;
+    public bool joiningRoom = false;
 
     // Use this for initialization
     void Start()
