@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Rigidbody rb; // Rigidbody
+    private Rigidbody rb; // Rigidbody component reference
 
-    public float maxSpeed = 400.0f;
+    public float maxSpeed = 400.0f; // Maximum speed
     public float decelerationRate = 1f; // Rate of deceleration
     public float baseRotationSpeed = 10.0f; // Base rotation speed
 
-    private float currentSpeed = 0.0f; // Current speed starts at 0
+    private float currentSpeed = 0.0f; // Current speed, starts at 0
     private float t = 5.0f; // Time variable for exponential acceleration
 
     public float minSpeedForRotation = 5.0f; // Minimum speed to start rotating
@@ -17,16 +17,20 @@ public class PlayerMovement : MonoBehaviour
     private float logTimer = 0.0f; // Timer for log frequency
     public float logInterval = 0.2f; // Interval for logging
 
+    private float horizontalInput; // Horizontal input
+    private float verticalInput; // Vertical input
+
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>(); // Get the Rigidbody component
     }
 
     void Update()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
-        bool isAccelerating = moveVertical > 0;
+        // Read inputs
+        horizontalInput = Input.GetAxis("Horizontal");
+        verticalInput = Input.GetAxis("Vertical");
+        bool isAccelerating = verticalInput > 0;
 
         // Accelerate or decelerate
         if (isAccelerating)
@@ -56,13 +60,17 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-
         // Apply rotation
-        if (moveHorizontal != 0 && currentSpeed > minSpeedForRotation)
+        if (horizontalInput != 0 && currentSpeed > minSpeedForRotation)
         {
-            float rotationSpeed = baseRotationSpeed + (Mathf.Clamp(currentSpeed, minSpeedForRotation, maxSpeed) / maxSpeed) * rotationSpeedFactor * baseRotationSpeed;
-            float turnAngle = moveHorizontal * rotationSpeed * Time.fixedDeltaTime;
+            float rotationSpeed = baseRotationSpeed +
+                                  (Mathf.Clamp(currentSpeed, minSpeedForRotation, maxSpeed) / maxSpeed)
+                                   * rotationSpeedFactor
+                                   * baseRotationSpeed;
+
+            float turnAngle = horizontalInput * rotationSpeed * Time.fixedDeltaTime;
+
+            // Rotate around the player's local y-axis (up axis)
             Quaternion deltaRotation = Quaternion.Euler(0, turnAngle, 0);
             rb.MoveRotation(rb.rotation * deltaRotation);
         }
@@ -71,4 +79,5 @@ public class PlayerMovement : MonoBehaviour
         Vector3 move = transform.forward * currentSpeed * Time.fixedDeltaTime;
         rb.MovePosition(rb.position + move);
     }
+
 }
