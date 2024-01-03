@@ -205,7 +205,7 @@ public class PUN2_GameLobby : MonoBehaviourPunCallbacks
         //Set our player name
         PhotonNetwork.NickName = playerName;
         //Load the Scene called Playground (Make sure it's added to build settings)
-        PhotonNetwork.LoadLevel("Playground");
+        PhotonNetwork.LoadLevel("Level_01");
     }
 
     public override void OnJoinedRoom()
