@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -14,15 +15,19 @@ public class PlayerMovement : MonoBehaviour
     public float minSpeedForRotation = 5.0f; // Minimum speed to start rotating
     public float rotationSpeedFactor = 0.5f; // Factor to adjust rotation based on speed
 
-    private float logTimer = 0.0f; // Timer for log frequency
-    public float logInterval = 0.2f; // Interval for logging
-
     private float horizontalInput; // Horizontal input
     private float verticalInput; // Vertical input
+
+    public Text speedDisplay;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>(); // Get the Rigidbody component
+
+        if (speedDisplay != null)
+        {
+            speedDisplay.text = "Speed: 0";
+        }
     }
 
     void Update()
@@ -49,13 +54,12 @@ public class PlayerMovement : MonoBehaviour
             t = 5.0f; // Reset time when not accelerating
         }
 
-        // Logging with controlled frequency
-        logTimer += Time.deltaTime;
-        if (logTimer >= logInterval)
+
+        if (speedDisplay != null)
         {
-            Debug.Log("Current Speed: " + currentSpeed);
-            logTimer = 0.0f; // Reset the timer
+            speedDisplay.text = "Speed: " + currentSpeed.ToString("F2");
         }
+
     }
 
     void FixedUpdate()

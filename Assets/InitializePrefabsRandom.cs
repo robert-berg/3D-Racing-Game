@@ -5,7 +5,7 @@ using UnityEngine;
 public class InitializePrefabsRandom : MonoBehaviour
 {
     public Transform myPrefab;
-    private int numberOfInstances = 10; // Anzahl der zu erzeugenden Instanzen
+    private int numberOfInstances = 200; // Anzahl der zu erzeugenden Instanzen
 
     // Start is called before the first frame update
     void Start()
@@ -30,9 +30,9 @@ public class InitializePrefabsRandom : MonoBehaviour
         while (currentAttempt < maxAttempts)
         {
             Vector3 spawnPosition = new Vector3(
-                Random.Range(-25, 25), // X-Position
-                2, // Y-Position
-                Random.Range(-25, 25)  // Z-Position
+                Random.Range(-100, 100), // X-Position
+                3f, // Y-Position
+                Random.Range(0, 48000)  // Z-Position
             );
 
             if (!Physics.CheckSphere(spawnPosition, 0.5f)) // 0.5f ist der Radius der Prüfung
