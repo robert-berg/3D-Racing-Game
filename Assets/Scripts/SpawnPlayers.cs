@@ -25,7 +25,7 @@ public class SpawnPlayers : MonoBehaviour
         //Vector3 randomPosition = new Vector3(Random.Range(minX, maxX), -15.07465f, Random.Range(minZ, maxZ));
         //PhotonNetwork.Instantiate(playerPrefab.name, randomPosition, Quaternion.identity);
         PhotonNetwork.Instantiate(playerPrefab.name, playerSpawnPosition1, Quaternion.identity);
-        PhotonNetwork.Instantiate(playerPrefab2.name, playerSpawnPosition2, Quaternion.identity);
+        //PhotonNetwork.Instantiate(playerPrefab2.name, playerSpawnPosition2, Quaternion.identity);
 
         //gamelobby = FindAnyObjectByType<PUN2_GameLobby>();
         //if(gamelobby.joiningRoom)
