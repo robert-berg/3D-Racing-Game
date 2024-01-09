@@ -9,7 +9,7 @@ public class SpawnPlayers : MonoBehaviour
     //public PUN2_GameLobby gamelobby;
 
     public GameObject playerPrefab;
-    public GameObject playerPrefab2;
+    //public GameObject playerPrefab2;
 
     public float minX;
     public float maxX;
