@@ -9,19 +9,51 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
     //Player spawn point
     public Transform[] spawnPoints;
 
+    public float spawnDistance = 15f; // Distance between Spawn-Positionen
+
     // Use this for initialization
     void Start()
     {
-        //In case we started this demo with the wrong scene being active, simply load the menu scene
-        if (PhotonNetwork.CurrentRoom == null)
-        {
-            Debug.Log("Is not in the room, returning back to Lobby");
-            UnityEngine.SceneManagement.SceneManager.LoadScene("GameLobby");
-            return;
-        }
+        PhotonNetwork.ConnectUsingSettings();
+    //In case we started this demo with the wrong scene being active, simply load the menu scene
+    //if (PhotonNetwork.CurrentRoom == null)
+    //{
+    //    Debug.Log("Is not in the room, returning back to Lobby");
+    //    UnityEngine.SceneManagement.SceneManager.LoadScene("GameLobby");
+    //    return;
+    //}
 
-        //We're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
-        PhotonNetwork.Instantiate(playerPrefab.name, spawnPoints[Random.Range(0, spawnPoints.Length - 1)].position, spawnPoints[Random.Range(0, spawnPoints.Length - 1)].rotation, 0);
+    //We're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
+    //PhotonNetwork.Instantiate(playerPrefab.name, spawnPoints[Random.Range(0, spawnPoints.Length - 1)].position, spawnPoints[Random.Range(0, spawnPoints.Length - 1)].rotation, 0);
+        
+    }
+
+    public override void OnConnectedToMaster()
+    {
+        Debug.Log("Connected to Master");
+        PhotonNetwork.JoinRandomOrCreateRoom();
+    }
+
+    Vector3 CalculateSpawnPosition(int playerIndex)
+    {
+        // Berechne die X-Position basierend auf dem Index
+        float xPos = playerIndex * spawnDistance;
+
+        // Setze die Y-Position auf 1, um Spieler über dem Boden zu spawnen
+        float yPos = 1f;
+
+        // Verwende die gleiche Z-Position für alle Spieler (kann nach Bedarf angepasst werden)
+        float zPos = 5f;
+
+        return new Vector3(xPos, yPos, zPos);
+    }
+
+    public void InstantiatePlayers()
+    {
+        //Debug.Log("Playercount: " + PhotonNetwork.CurrentRoom.PlayerCount);
+        //int playerCount = PhotonNetwork.CurrentRoom.PlayerCount;
+        //Vector3 spawnPosition = CalculateSpawnPosition(playerCount);
+        PhotonNetwork.Instantiate(playerPrefab.name, new Vector3(0, 5, 10), Quaternion.identity);
     }
 
     void OnGUI()
@@ -51,5 +83,11 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
     {
         //We have left the Room, return back to the GameLobby
         UnityEngine.SceneManagement.SceneManager.LoadScene("GameLobby");
+    }
+
+    public override void OnJoinedRoom()
+    {
+        Debug.Log("Joined a room.");
+        InstantiatePlayers();
     }
 }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6886048969862315097}
   - component: {fileID: 6886048969862315045}
   - component: {fileID: 6886048969862315044}
-  - component: {fileID: 6886048969862315047}
+  - component: {fileID: 8543173455503830107}
   - component: {fileID: -2900991438847108300}
   - component: {fileID: 210842821526771534}
   m_Layer: 0
@@ -125,30 +125,31 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6886048969862315102}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fc638d71c91a1ed4cac2f07b2f8a0e8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
---- !u!143 &6886048969862315047
-CharacterController:
+  maxSpeed: 400
+  decelerationRate: 1
+  baseRotationSpeed: 10
+  minSpeedForRotation: 5
+  rotationSpeedFactor: 0.5
+  speedDisplay: {fileID: 0}
+--- !u!114 &8543173455503830107
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6886048969862315102}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Height: 1
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b49f83754a1d8374db2c9dffd1be05a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  rspeed: 50
 --- !u!114 &-2900991438847108300
 MonoBehaviour:
   m_ObjectHideFlags: 0
