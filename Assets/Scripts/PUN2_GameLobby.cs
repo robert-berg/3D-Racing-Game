@@ -40,6 +40,8 @@ public class PUN2_GameLobby : MonoBehaviourPunCallbacks
     Vector2 roomListScroll = Vector2.zero;
     public bool joiningRoom = false;
 
+    private bool showGUI = true;
+
     // Use this for initialization
     void Start()
     {
@@ -80,7 +82,10 @@ public class PUN2_GameLobby : MonoBehaviourPunCallbacks
 
     void OnGUI()
     {
-        GUI.Window(0, new Rect(Screen.width / 2 - 450, Screen.height / 2 - 200, 900, 400), LobbyWindow, "Lobby");
+        if(showGUI)
+        {
+            GUI.Window(0, new Rect(Screen.width / 2 - 450, Screen.height / 2 - 200, 900, 400), LobbyWindow, "Lobby");
+        }
     }
 
     void LobbyWindow(int index)
@@ -207,12 +212,16 @@ public class PUN2_GameLobby : MonoBehaviourPunCallbacks
         //Set our player name
         PhotonNetwork.NickName = playerName;
         //Load the Scene called Playground (Make sure it's added to build settings)
-        PhotonNetwork.LoadLevel("Level_01");
+        //PhotonNetwork.LoadLevel("Level_01");
         //StartCoroutine(LoadLevelAsync());
+
+        showGUI = false;
+        Debug.Log("Room Created");
     }
 
     public override void OnJoinedRoom()
     {
+        showGUI = false;
         Debug.Log("OnJoinedRoom");
     }
 
