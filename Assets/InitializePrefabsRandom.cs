@@ -16,8 +16,8 @@ public class InitializePrefabsRandom : MonoBehaviour
 
             if (spawnPosition != Vector3.zero) // Überprüfe, ob eine geeignete Position gefunden wurde
             {
-                // Instanz erzeugen
-                Instantiate(myPrefab, spawnPosition, Quaternion.identity);
+                // Instanz erzeugen mit 90 Grad Rotation
+                Instantiate(myPrefab, spawnPosition, Quaternion.Euler(90, 0, 0));
             }
         }
     }
@@ -31,7 +31,7 @@ public class InitializePrefabsRandom : MonoBehaviour
         {
             Vector3 spawnPosition = new Vector3(
                 Random.Range(-100, 100), // X-Position
-                3f, // Y-Position
+                1.75f, // Y-Position
                 Random.Range(0, 48000)  // Z-Position
             );
 
