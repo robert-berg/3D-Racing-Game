@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Resources/CarRoot.prefab.meta
 guid: c414f146561b2a84faa0ac357aefc0b7
+========
+guid: e55b72aa0a117b94dbc349aa4bead9b2
+>>>>>>>> main:Assets/Cuboid.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 
