@@ -8,6 +8,7 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
     public GameObject playerPrefab;
     //Player spawn point
     public Transform[] spawnPoints;
+    public Camera lobbyCamera;
 
     public float spawnDistance = 15f; // Distance between Spawn-Positionen
 
@@ -37,13 +38,13 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
     Vector3 CalculateSpawnPosition(int playerIndex)
     {
         // Berechne die X-Position basierend auf dem Index
-        float xPos = playerIndex * spawnDistance;
+        float xPos = 113f + (playerIndex * spawnDistance);
 
         // Setze die Y-Position auf 1, um Spieler über dem Boden zu spawnen
-        float yPos = 1f;
+        float yPos = 4f;
 
         // Verwende die gleiche Z-Position für alle Spieler (kann nach Bedarf angepasst werden)
-        float zPos = 5f;
+        float zPos = 289f;
 
         return new Vector3(xPos, yPos, zPos);
     }
@@ -51,9 +52,9 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
     public void InstantiatePlayers()
     {
         //Debug.Log("Playercount: " + PhotonNetwork.CurrentRoom.PlayerCount);
-        //int playerCount = PhotonNetwork.CurrentRoom.PlayerCount;
-        //Vector3 spawnPosition = CalculateSpawnPosition(playerCount);
-        PhotonNetwork.Instantiate(playerPrefab.name, new Vector3(0, 5, 10), Quaternion.identity);
+        int playerCount = PhotonNetwork.CurrentRoom.PlayerCount;
+        Vector3 spawnPosition = CalculateSpawnPosition(playerCount);
+        PhotonNetwork.Instantiate(playerPrefab.name, spawnPosition, Quaternion.identity);
     }
 
     void OnGUI()
@@ -88,6 +89,12 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("Joined a room.");
+        SwitchOffLobbyCamera();
         InstantiatePlayers();
+    }
+
+    public void SwitchOffLobbyCamera()
+    {
+        lobbyCamera.enabled = false;
     }
 }
