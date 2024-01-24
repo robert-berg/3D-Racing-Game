@@ -16,6 +16,9 @@ public class SC_CarController : MonoBehaviour
     public float maxBrakeTorque = 500;
     public Transform centerOfMass;
 
+    public Camera carFontViewCamera;
+    public Camera carBackViewCamera;
+
     float gravity = 9.8f;
     bool braked = false;
     Rigidbody rb;
@@ -47,6 +50,17 @@ public class SC_CarController : MonoBehaviour
     }
     void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            carFontViewCamera.enabled = false;
+            carBackViewCamera.enabled = true;
+        } else if (Input.GetKeyUp(KeyCode.E))
+        {
+            carFontViewCamera.enabled = true;
+            carBackViewCamera.enabled = false;
+        }
+
         HandBrake();
 
         //For tyre rotate
