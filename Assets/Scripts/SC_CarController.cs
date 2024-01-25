@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class SC_CarController : MonoBehaviour
 {
@@ -12,9 +13,11 @@ public class SC_CarController : MonoBehaviour
     public Transform WheelRLTrans;
     public Transform WheelRRTrans;
     public float steeringAngle = 45;
-    public float maxTorque = 1000;
+    public float maxTorque = 100000;
     public float maxBrakeTorque = 500;
     public Transform centerOfMass;
+    
+    private string speedTextName = "SpeedText";
 
     public Camera carFontViewCamera;
     public Camera carBackViewCamera;
@@ -75,6 +78,18 @@ public class SC_CarController : MonoBehaviour
         WheelFLTrans.localEulerAngles = temp;
         temp1.y = WheelFR.steerAngle - WheelFRTrans.localEulerAngles.z;
         WheelFRTrans.localEulerAngles = temp1;
+
+        GameObject speedTextObject = GameObject.Find(speedTextName);
+        if (speedTextObject != null)
+        {
+            Text speedText = speedTextObject.GetComponent<Text>();
+            if (speedText != null)
+            {
+                float speed = rb.velocity.magnitude * 3.6f;
+                speedText.text = "Speed: " + speed.ToString("F2") + " km/h";
+            }
+        }
+
     }
     void HandBrake()
     {
