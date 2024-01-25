@@ -610,7 +610,7 @@ MonoBehaviour:
   WheelRLTrans: {fileID: 8386862353184253148}
   WheelRRTrans: {fileID: 8386862353405834376}
   steeringAngle: 45
-  maxTorque: 1000
+  maxTorque: 100000
   maxBrakeTorque: 500
   centerOfMass: {fileID: 8386862351999551034}
   carFontViewCamera: {fileID: 7448430368177622071}
