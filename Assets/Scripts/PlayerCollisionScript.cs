@@ -1,38 +1,41 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerCollisionScript : MonoBehaviour
 {
-
-    private int collectableCount = 0; // Zähler für gesammelte Collectables
-    public Text collectableCountDisplay;
+    private int collectableCount = 0; // Counter for collected collectables
+    private Text collectableCountDisplay;
 
     // Start is called before the first frame update
     void Start()
     {
-        collectableCountDisplay.text = "Collectables: 0";
+        GameObject textObject = GameObject.Find("CollectableText");
+        if (textObject != null)
+        {
+            collectableCountDisplay = textObject.GetComponent<Text>();
+            if (collectableCountDisplay != null)
+            {
+                collectableCountDisplay.text = "Collectables: 0";
+            }
+        }
+    }
+
+    // OnTriggerEnter is called when the player collides with an object
+    private void OnTriggerEnter(Collider other)
+    {
+        // Check if the colliding object has the tag "toDestroy"
+        if (other.gameObject.CompareTag("toDestroy"))
+        {
+            Destroy(other.gameObject); // Destroy the colliding object
+            if (collectableCountDisplay != null)
+            {
+                collectableCountDisplay.text = "Collectables: " + ++collectableCount;
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-
-    }
-
-    // OnTriggerEnter wird aufgerufen, wenn der Spieler mit einem Objekt kollidiert
-    private void OnTriggerEnter(Collider other)
-    {
-
-        // Überprüft, ob das kollidierende Objekt den Tag "toDestroy" hat
-        if (other.gameObject.CompareTag("toDestroy"))
-        {
-            Destroy(other.gameObject); // Zerstört das kollidierende Objekt
-            if (collectableCountDisplay != null)
-            {
-                collectableCountDisplay.text = "Collectables: " +  ++collectableCount;
-            }
-        }
     }
 }

@@ -1,22 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InitializePrefabsRandom : MonoBehaviour
 {
     public Transform myPrefab;
-    private int numberOfInstances = 200; // Anzahl der zu erzeugenden Instanzen
+    private int numberOfInstances = 10; // Number of instances to create
 
-    // Start is called before the first frame update
     void Start()
     {
         for (int i = 0; i < numberOfInstances; i++)
         {
             Vector3 spawnPosition = GetNonCollidingPosition();
 
-            if (spawnPosition != Vector3.zero) // Überprüfe, ob eine geeignete Position gefunden wurde
+            if (spawnPosition != Vector3.zero) // Check if a suitable position was found
             {
-                // Instanz erzeugen mit 90 Grad Rotation
                 Instantiate(myPrefab, spawnPosition, Quaternion.Euler(90, 0, 0));
             }
         }
@@ -24,32 +20,32 @@ public class InitializePrefabsRandom : MonoBehaviour
 
     Vector3 GetNonCollidingPosition()
     {
-        int maxAttempts = 100; // Maximalanzahl der Versuche, um Überlappungen zu vermeiden
+        int maxAttempts = 100; // Maximum number of attempts to avoid overlaps
         int currentAttempt = 0;
 
         while (currentAttempt < maxAttempts)
         {
-            Vector3 spawnPosition = new Vector3(
-                Random.Range(-100, 100), // X-Position
-                1.75f, // Y-Position
-                Random.Range(0, 48000)  // Z-Position
+            Vector3 randomOffset = new Vector3(
+                Random.Range(-15, 15), // X offset
+                3f,                   // Y offset
+                Random.Range(0, 450)     // Z offset
             );
+            Vector3 spawnPosition = transform.position + randomOffset;
 
-            if (!Physics.CheckSphere(spawnPosition, 0.5f)) // 0.5f ist der Radius der Prüfung
+            if (!Physics.CheckSphere(spawnPosition, 0.5f)) // 0.5f is the radius of the check
             {
-                return spawnPosition; // Keine Kollision gefunden, gib diese Position zurück
+                return spawnPosition; // No collision found, return this position
             }
 
             currentAttempt++;
         }
 
-        // Falls alle Versuche fehlschlagen, gib einen Standardwert zurück
+        // If all attempts fail, return a default value
         return Vector3.zero;
     }
 
     // Update is called once per frame
     void Update()
     {
-
     }
 }
