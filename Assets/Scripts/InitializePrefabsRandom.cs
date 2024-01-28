@@ -3,7 +3,7 @@ using UnityEngine;
 public class InitializePrefabsRandom : MonoBehaviour
 {
     public Transform myPrefab;
-    private int numberOfInstances = 10; // Number of instances to create
+    private int numberOfInstances = 8; // Number of instances to create
 
     void Start()
     {

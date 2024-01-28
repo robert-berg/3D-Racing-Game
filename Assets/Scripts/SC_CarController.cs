@@ -12,9 +12,9 @@ public class SC_CarController : MonoBehaviour
     public Transform WheelFRTrans;
     public Transform WheelRLTrans;
     public Transform WheelRRTrans;
-    public float steeringAngle = 45;
-    public float maxTorque = 100000;
-    public float maxBrakeTorque = 500;
+    private float steeringAngle = 45;
+    private float maxTorque = 5000;
+    private float maxBrakeTorque = 500;
     public Transform centerOfMass;
     
     private string speedTextName = "SpeedText";
@@ -25,6 +25,7 @@ public class SC_CarController : MonoBehaviour
     float gravity = 9.8f;
     bool braked = false;
     Rigidbody rb;
+
 
     void Start()
     {
@@ -50,6 +51,7 @@ public class SC_CarController : MonoBehaviour
         //Here we are changing the steer angle of the front tyres of the car so that we can change the car direction.
         WheelFL.steerAngle = steeringAngle * Input.GetAxis("Horizontal");
         WheelFR.steerAngle = steeringAngle * Input.GetAxis("Horizontal");
+
     }
     void Update()
     {
