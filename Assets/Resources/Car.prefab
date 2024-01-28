@@ -1102,11 +1102,11 @@ WheelCollider:
     m_AsymptoteValue: 0.75
     m_Stiffness: 2
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.2
-    m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.5
-    m_AsymptoteValue: 0.75
-    m_Stiffness: 1
+    m_ExtremumSlip: 0.25
+    m_ExtremumValue: 1.2
+    m_AsymptoteSlip: 0.6
+    m_AsymptoteValue: 0.85
+    m_Stiffness: 1.3
   m_Enabled: 1
 --- !u!1 &8386862352130936722
 GameObject:
@@ -1608,11 +1608,11 @@ WheelCollider:
     m_AsymptoteValue: 0.75
     m_Stiffness: 2
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.2
-    m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.5
-    m_AsymptoteValue: 0.75
-    m_Stiffness: 1
+    m_ExtremumSlip: 0.25
+    m_ExtremumValue: 1.2
+    m_AsymptoteSlip: 0.6
+    m_AsymptoteValue: 0.85
+    m_Stiffness: 1.3
   m_Enabled: 1
 --- !u!1 &8386862353184253147
 GameObject:
@@ -1671,11 +1671,11 @@ WheelCollider:
     m_AsymptoteValue: 0.75
     m_Stiffness: 2
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.2
-    m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.5
-    m_AsymptoteValue: 0.75
-    m_Stiffness: 1
+    m_ExtremumSlip: 0.25
+    m_ExtremumValue: 1.2
+    m_AsymptoteSlip: 0.6
+    m_AsymptoteValue: 0.85
+    m_Stiffness: 1.3
   m_Enabled: 1
 --- !u!1 &8386862353231655401
 GameObject:
@@ -1849,11 +1849,11 @@ WheelCollider:
     m_AsymptoteValue: 0.75
     m_Stiffness: 2
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.2
-    m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.5
-    m_AsymptoteValue: 0.75
-    m_Stiffness: 1
+    m_ExtremumSlip: 0.25
+    m_ExtremumValue: 1.2
+    m_AsymptoteSlip: 0.6
+    m_AsymptoteValue: 0.85
+    m_Stiffness: 1.3
   m_Enabled: 1
 --- !u!1 &8386862353449985999
 GameObject:
