@@ -20,12 +20,30 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform frontLeftWheelTransform, frontRightWheelTransform;
     [SerializeField] private Transform rearLeftWheelTransform, rearRightWheelTransform;
 
+    public Camera carFontViewCamera;
+    public Camera carBackViewCamera;
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            carFontViewCamera.enabled = false;
+            carBackViewCamera.enabled = true;
+        }
+        else if (Input.GetKeyUp(KeyCode.E))
+        {
+            carFontViewCamera.enabled = true;
+            carBackViewCamera.enabled = false;
+        }
+    }
+
     private void FixedUpdate()
     {
         GetInput();
         HandleMotor();
         HandleSteering();
         UpdateWheels();
+
     }
 
     private void GetInput()

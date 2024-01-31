@@ -404,6 +404,7 @@ GameObject:
   - component: {fileID: 4616346122733308713}
   - component: {fileID: 1056748884109650561}
   - component: {fileID: 5438149270106970825}
+  - component: {fileID: -6450735887305107824}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -468,6 +469,23 @@ MonoBehaviour:
   frontRightWheelTransform: {fileID: 7747901964612272019}
   rearLeftWheelTransform: {fileID: 1813796544008877711}
   rearRightWheelTransform: {fileID: 7406951873373051308}
+--- !u!114 &-6450735887305107824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5430038210261881235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41625d0ed751c0448a163509e29710bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localScripts:
+  - {fileID: 0}
+  localObjects:
+  - {fileID: 0}
+  wheels: []
 --- !u!1 &5713902516990855338
 GameObject:
   m_ObjectHideFlags: 0
