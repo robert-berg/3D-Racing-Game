@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CarController : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class CarController : MonoBehaviour
     // Settings
     [SerializeField] private float motorForce, breakForce, maxSteerAngle;
 
+    private Rigidbody rb;
     // Wheel Colliders
     [SerializeField] private WheelCollider frontLeftWheelCollider, frontRightWheelCollider;
     [SerializeField] private WheelCollider rearLeftWheelCollider, rearRightWheelCollider;
@@ -22,6 +24,12 @@ public class CarController : MonoBehaviour
 
     public Camera carFontViewCamera;
     public Camera carBackViewCamera;
+
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     void Update()
     {
@@ -34,6 +42,22 @@ public class CarController : MonoBehaviour
         {
             carFontViewCamera.enabled = true;
             carBackViewCamera.enabled = false;
+        }
+
+        UpdateSpeedDisplay();
+    }
+
+    private void UpdateSpeedDisplay()
+    {
+        GameObject speedTextObject = GameObject.Find("SpeedText");
+        Text speedText = speedTextObject.GetComponent<Text>();
+        if (speedTextObject != null)
+        {
+            if (speedText != null)
+            {
+                float speed = rb.velocity.magnitude * 3.6f;
+                speedText.text = "Speed: " + speed.ToString("F2") + " km/h";
+            }
         }
     }
 
