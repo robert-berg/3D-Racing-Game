@@ -20,6 +20,7 @@ public class PlayerCollisionScript : MonoBehaviourPun
             collectableCountDisplay = textObject.GetComponent<Text>();
             if (collectableCountDisplay != null)
             {
+                if (!photonView.IsMine) return;
                 collectableCountDisplay.text = "Collectables: 0";
             }
         }
