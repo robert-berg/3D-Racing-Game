@@ -225,31 +225,31 @@ public class PUN2_GameLobby : MonoBehaviourPunCallbacks
         Debug.Log("OnJoinedRoom");
     }
 
-    IEnumerator LoadLevelAsync()
-    {
-        Debug.Log("coroutine");
-        //AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Level_01", LoadSceneMode.Additive);
-        PhotonNetwork.LoadLevel("Level_01");
-        Debug.Log("coroutine1");
-        while (!PhotonNetwork.LevelLoadingProgress.Equals(1f))
-        {
-            //Debug.Log("coroutine2");
-            Debug.Log("coroutine2: " + PhotonNetwork.LevelLoadingProgress);
-            Debug.Log("current scene: " + SceneManager.GetActiveScene().name);
-            yield return null;
-        }
-        Debug.Log("coroutine3");
-        // Finde das "SpawnPlayers"-Skript in der geladenen Szene und rufe die Methode auf
-        SpawnPlayers spawnPlayersScript = FindObjectOfType<SpawnPlayers>();
+    //IEnumerator LoadLevelAsync()
+    //{
+    //    Debug.Log("coroutine");
+    //    //AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Level_01", LoadSceneMode.Additive);
+    //    PhotonNetwork.LoadLevel("Level_01");
+    //    Debug.Log("coroutine1");
+    //    while (!PhotonNetwork.LevelLoadingProgress.Equals(1f))
+    //    {
+    //        //Debug.Log("coroutine2");
+    //        Debug.Log("coroutine2: " + PhotonNetwork.LevelLoadingProgress);
+    //        Debug.Log("current scene: " + SceneManager.GetActiveScene().name);
+    //        yield return null;
+    //    }
+    //    Debug.Log("coroutine3");
+    //    // Finde das "SpawnPlayers"-Skript in der geladenen Szene und rufe die Methode auf
+    //    SpawnPlayers spawnPlayersScript = FindObjectOfType<SpawnPlayers>();
 
-        if (spawnPlayersScript != null)
-        {
-            //spawnPlayersScript.InstantiatePlayers();
-            Debug.Log("coroutine4");
-        }
-        else
-        {
-            Debug.LogError("SpawnPlayers script not found in the loaded scene!");
-        }
-    }
+    //    if (spawnPlayersScript != null)
+    //    {
+    //        //spawnPlayersScript.InstantiatePlayers();
+    //        Debug.Log("coroutine4");
+    //    }
+    //    else
+    //    {
+    //        Debug.LogError("SpawnPlayers script not found in the loaded scene!");
+    //    }
+    //}
 }

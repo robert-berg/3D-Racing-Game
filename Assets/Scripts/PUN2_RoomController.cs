@@ -11,6 +11,8 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
     public Camera lobbyCamera;
 
     public float spawnDistance = 15f; // Distance between Spawn-Positionen
+    [SerializeField]
+    private AudioSource backgroundMusic;
 
     // Use this for initialization
     void Start()
@@ -32,13 +34,13 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         Debug.Log("Connected to Master");
-        PhotonNetwork.JoinRandomOrCreateRoom();
+        //PhotonNetwork.JoinRandomOrCreateRoom();
     }
 
     Vector3 CalculateSpawnPosition(int playerIndex)
     {
         // Berechne die X-Position basierend auf dem Index
-        float xPos = 113f + (playerIndex * spawnDistance);
+        float xPos = 114 + (playerIndex * spawnDistance);
 
         // Setze die Y-Position auf 1, um Spieler über dem Boden zu spawnen
         float yPos = 4f;
@@ -72,18 +74,18 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
         GUI.Label(new Rect(135, 5, 200, 25), PhotonNetwork.CurrentRoom.Name);
 
         //Show the list of the players connected to this Room
-        for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
-        {
-            //Show if this player is a Master Client. There can only be one Master Client per Room so use this to define the authoritative logic etc.)
-            string isMasterClient = (PhotonNetwork.PlayerList[i].IsMasterClient ? ": MasterClient" : "");
-            GUI.Label(new Rect(5, 35 + 30 * i, 200, 25), PhotonNetwork.PlayerList[i].NickName + isMasterClient);
-        }
+        //for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
+        //{
+        //    //Show if this player is a Master Client. There can only be one Master Client per Room so use this to define the authoritative logic etc.)
+        //    string isMasterClient = (PhotonNetwork.PlayerList[i].IsMasterClient ? ": MasterClient" : "");
+        //    GUI.Label(new Rect(5, 35 + 30 * i, 200, 25), PhotonNetwork.PlayerList[i].NickName + isMasterClient);
+        //}
     }
 
     public override void OnLeftRoom()
     {
         //We have left the Room, return back to the GameLobby
-        UnityEngine.SceneManagement.SceneManager.LoadScene("GameLobby");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Level_01");
     }
 
     public override void OnJoinedRoom()
@@ -96,5 +98,14 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
     public void SwitchOffLobbyCamera()
     {
         lobbyCamera.enabled = false;
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.M) && backgroundMusic.volume != 0)
+        {
+            backgroundMusic.mute = !backgroundMusic.mute;
+            Debug.Log("MUTE!");
+        }
     }
 }
