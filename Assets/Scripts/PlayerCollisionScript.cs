@@ -1,8 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using Photon.Pun;
 
-public class PlayerCollisionScript : MonoBehaviour
+public class PlayerCollisionScript : MonoBehaviourPun
 {
     private int collectableCount = 0; // Counter for collected collectables
     private Text collectableCountDisplay;
@@ -33,6 +34,7 @@ public class PlayerCollisionScript : MonoBehaviour
             Destroy(other.gameObject); // Destroy the colliding object
             if (collectableCountDisplay != null)
             {
+                if (!photonView.IsMine) return;
                 collectableCountDisplay.text = "Collectables: " + ++collectableCount;
                 StartCoroutine(AnimateScaleOverTime(0.5f, 1.2f));
             }
