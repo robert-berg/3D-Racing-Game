@@ -3,12 +3,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
 public class CarController : MonoBehaviour
 {
     private float horizontalInput, verticalInput;
     private float currentSteerAngle, currentbreakForce;
     private bool isBreaking;
+
+    private Material GetMaterialByIndex(int index)
+    {
+
+        var roomController = FindObjectOfType<PUN2_RoomController>();
+        switch (index)
+        {
+            case 0: return roomController.material_player_one;
+            case 1: return roomController.material_player_two;
+            case 2: return roomController.material_player_three;
+            case 3: return roomController.material_player_four;
+            case 4: return roomController.material_player_five;
+            default: return null;
+        }
+    }
+
+    [PunRPC]
+    public void ChangeMaterial(int materialIndex)
+    {
+        Material material = GetMaterialByIndex(materialIndex);
+        Renderer bodyRenderer = transform.Find("Body").GetComponent<Renderer>();
+        if (bodyRenderer != null)
+        {
+            bodyRenderer.material = material;
+        }
+        else
+        {
+            Debug.LogError("'Body' child not found or Renderer component missing.");
+        }
+
+    }
 
     // Settings
     [SerializeField] private float motorForce, breakForce, maxSteerAngle;

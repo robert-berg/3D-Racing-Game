@@ -13,7 +13,6 @@ public class MagnetismEffect : MonoBehaviour
         {
             if (collider.CompareTag(targetTag))
             {
-                Debug.Log("Target within radius. Applying force.");
                 Vector3 pullDirection = (collider.transform.position - transform.position).normalized;
                 float distance = Vector3.Distance(collider.transform.position, transform.position);
                 float newPullForce = Mathf.Lerp(pullForce, 0, distance / pullRadius);
