@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class PlayerCollisionScript : MonoBehaviour
 {
@@ -33,6 +34,7 @@ public class PlayerCollisionScript : MonoBehaviour
             if (collectableCountDisplay != null)
             {
                 collectableCountDisplay.text = "Collectables: " + ++collectableCount;
+                StartCoroutine(AnimateScaleOverTime(0.5f, 1.2f));
             }
         }
     }
@@ -47,4 +49,38 @@ public class PlayerCollisionScript : MonoBehaviour
     void Update()
     {
     }
+
+    IEnumerator AnimateScaleOverTime(float duration, float scaleFactor)
+    {
+        Vector3 originalScale = Vector3.one;
+        Vector3 targetScale = new Vector3(scaleFactor, scaleFactor, scaleFactor);
+        float halfDuration = duration / 2f;
+
+
+
+        // First half: Scale up
+        float currentTime = 0f;
+        while (currentTime < halfDuration)
+        {
+            float t = currentTime / halfDuration; // Normalize time to [0, 1]
+            collectableCountDisplay.transform.localScale = Vector3.Lerp(originalScale, targetScale, t);
+            currentTime += Time.deltaTime;
+            yield return null;
+        }
+
+
+        // Second half: Scale down
+        currentTime = 0f;
+        while (currentTime < halfDuration)
+        {
+            float t = currentTime / halfDuration; // Normalize time to [0, 1]
+            collectableCountDisplay.transform.localScale = Vector3.Lerp(targetScale, originalScale, t);
+            currentTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Ensure the scale is set back to original (Vector3.one) after the animation
+        collectableCountDisplay.transform.localScale = Vector3.one;
+    }
+
 }
