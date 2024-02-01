@@ -6,6 +6,9 @@ public class PlayerCollisionScript : MonoBehaviour
     private int collectableCount = 0; // Counter for collected collectables
     private Text collectableCountDisplay;
 
+    [SerializeField]
+    private ParticleSystem smoke;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +35,12 @@ public class PlayerCollisionScript : MonoBehaviour
                 collectableCountDisplay.text = "Collectables: " + ++collectableCount;
             }
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        smoke.Play();
+        Debug.Log("Collided.");
     }
 
     // Update is called once per frame
