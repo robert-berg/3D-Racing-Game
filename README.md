@@ -1,19 +1,44 @@
-# 3D-Racing-Game
+# Multiplayer 3D-Racing-Game
 
-# Networking/Multiplayer
-We use Photon/PUN2 in this project for networking in a multiplayer game. <br>
-https://www.photonengine.com/pun
 
-1. Import the free PUN2 package into your project (assets) <br>
-https://assetstore.unity.com/packages/tools/network/pun-2-free-119922
+This Unity 3D project is a multiplayer racing game. We use Photon/PUN2 for networking in this project.
 
-2. Create an Photon account (also for app id)
 
-3. Create a new app in your Photon account/dashboard:
-  https://dashboard.photonengine.com/
-  ![image](https://github.com/robert-berg/3D-Racing-Game/assets/65657186/0666d379-9753-40ad-9909-ff029e8099c1)
+## Demo
 
-4. Copy the App-Id and insert it into Unity -> Window -> Photon Unity Networking -> PUN Wizard -> click "Setup Project", paste your App ID then click "Setup Project":
-  ![image](https://github.com/robert-berg/3D-Racing-Game/assets/65657186/cbf96530-a306-4c54-a9e5-3cf1c93a476a)
+### [➡️ Try the Game (Windows)](https://github.com/robert-berg/3D-Racing-Game/blob/main/BUILD_Windows.zip)
 
-5. PUN2 is ready now!
+Unzip the `BUILD_Windows.zip` file and execute `3D_Multiplayer_Racing_Game.exe` to launch the game.
+
+Controls:
+```
+WASD → Movement
+E → Switch camera to look forward
+M → Toggle music
+```
+
+(To test real-time multiplayer functionality simply launch multiple instances of the game)
+
+## Screenshots
+
+### Player Spawn 
+![](/start.png)
+*Players spawn on the starting line*
+
+### Collectables on the Race Track 
+![](/drive.png)
+*The number of collected items and the current speed of the car are shown on bottom left*
+
+### Collision with Particle Effect
+![](/collision.png)
+*When cars collide, the game shows particle effects*
+
+### Room Selection
+![](/rooms.png)
+*When launching the game you get to create or join a room*
+
+## Technologies Used
+
+- C#
+- Unity 3D
+- Photon PUN2
