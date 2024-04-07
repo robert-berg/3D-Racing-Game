@@ -15,7 +15,6 @@ Controls:
 WASD → Movement
 E → Switch camera to look forward
 M → Toggle music
-
 Spacebar → Break
 ```
 
